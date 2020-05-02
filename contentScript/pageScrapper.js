@@ -1,6 +1,4 @@
 function notifyExtension() {
-    //var serializer = new XMLSerializer();
-    //var content = serializer.serializeToString(document);
     var content = document.documentElement.outerHTML;
     if (chrome) {
         chrome.runtime.sendMessage({"dom": content, "source": window.location.href});
