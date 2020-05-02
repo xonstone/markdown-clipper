@@ -10,7 +10,7 @@ It uses the following libraries:
 The plugin is available for [Firefox](https://addons.mozilla.org/de/firefox/addon/markdown-clipper/) and [Google Chrome](https://chrome.google.com/webstore/detail/markdown-clipper/cjedbglnccaioiolemnfhjncicchinao).
 
 # Permissions
-- Access active tab: used to access the website content when the icon in the browser bar is clicked.
+- Access tabs: used to access the website content when the icon in the browser bar is clicked.
 - Manage Downloads: neccessary to be able to download the markdown file.
 
 --- 
