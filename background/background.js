@@ -44,7 +44,7 @@ function downloadMarkdown(markdown, article) {
     }, function(id) {
       chrome.downloads.onChanged.addListener((delta ) => {
         //release the url for the blob
-        if (delta.state && delta.state.current == "complete") {
+        if (delta.state && delta.state.current === "complete") {
           if (delta.id === id) {
             window.URL.revokeObjectURL(url);
           }
@@ -60,7 +60,7 @@ function downloadMarkdown(markdown, article) {
     }).then((id) => {
       browser.downloads.onChanged.addListener((delta ) => {
         //release the url for the blob
-        if (delta.state && delta.state.current == "complete") {
+        if (delta.state && delta.state.current === "complete") {
           if (delta.id === id) {
             window.URL.revokeObjectURL(url);
           }
@@ -77,7 +77,7 @@ function downloadMarkdown(markdown, article) {
 function notify(message) {
   var parser = new DOMParser();
   var dom = parser.parseFromString(message.dom, "text/html");
-  if (dom.documentElement.nodeName == "parsererror"){
+  if (dom.documentElement.nodeName === "parsererror"){
     console.error( "error while parsing");
   } 
 
