@@ -16,7 +16,7 @@ if (chrome) {
       var url = tabs[0].url;
         browser.tabs.executeScript(id, {
             file: "/contentScript/pageScrapper.js"
-        }),then( () => {
+        }).then( () => {
             console.log("Successfully injected");
         }).catch( (error) => {
             console.error(error);
