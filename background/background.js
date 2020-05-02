@@ -13,7 +13,11 @@ function createReadableVersion(dom) {
 }
 
 function convertArticleToMarkdown(article, source) {
-    var turndownService = new TurndownService()
+    var turndownService = new TurndownService({
+        headingStyle: "atx",
+        hr: "- - -",
+        codeBlockStyle: "fenced"
+    })
     var gfm = turndownPluginGfm.gfm
     turndownService.use(gfm)
     var markdown = turndownService.turndown(article.content);
@@ -96,13 +100,13 @@ function notify(message) {
     downloadMarkdown(markdown, article);
 }
 
-function action(){
+function action() {
     if (chrome) {
-        chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+        chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
             var id = tabs[0].id;
             chrome.tabs.executeScript(id, {
                 file: "/contentScript/pageScrapper.js"
-            }, function() {
+            }, function () {
                 console.log("Successfully injected");
             });
 
@@ -113,9 +117,9 @@ function action(){
                 var id = tabs[0].id;
                 browser.tabs.executeScript(id, {
                     file: "/contentScript/pageScrapper.js"
-                }).then( () => {
+                }).then(() => {
                     console.log("Successfully injected");
-                }).catch( (error) => {
+                }).catch((error) => {
                     console.error(error);
                 });
             });
