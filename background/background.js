@@ -16,6 +16,7 @@ function convertArticleToMarkdown(article, source) {
     var turndownService = new TurndownService({
         headingStyle: "atx",
         hr: "- - -",
+        bulletListMarker: "-",
         codeBlockStyle: "fenced"
     })
     var gfm = turndownPluginGfm.gfm
