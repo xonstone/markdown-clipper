@@ -1,7 +1,9 @@
 if (chrome) {
     chrome.runtime.onMessage.addListener(notify);
+    chrome.browserAction.onClicked.addListener(action);
 } else {
     browser.runtime.onMessage.addListener(notify);
+    browser.browserAction.onClicked.addListener(action);
 }
 
 function createReadableVersion(dom) {
@@ -92,4 +94,30 @@ function notify(message) {
     var article = createReadableVersion(dom);
     var markdown = convertArticleToMarkdown(article, message.source);
     downloadMarkdown(markdown, article);
+}
+
+function action(){
+    if (chrome) {
+        chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+            var id = tabs[0].id;
+            chrome.tabs.executeScript(id, {
+                file: "/contentScript/pageScrapper.js"
+            }, function() {
+                console.log("Successfully injected");
+            });
+
+        });
+    } else {
+        browser.tabs.query({currentWindow: true, active: true})
+            .then((tabs) => {
+                var id = tabs[0].id;
+                browser.tabs.executeScript(id, {
+                    file: "/contentScript/pageScrapper.js"
+                }).then( () => {
+                    console.log("Successfully injected");
+                }).catch( (error) => {
+                    console.error(error);
+                });
+            });
+    }
 }
