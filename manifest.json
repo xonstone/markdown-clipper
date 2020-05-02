@@ -24,8 +24,8 @@
   "background": {
     "scripts": [
       "background/turndown.js",
-      "background/Readability.js",
       "background/turndown-plugin-gfm.js",
+      "background/Readability.js",
       "background/background.js"
     ]
   }
