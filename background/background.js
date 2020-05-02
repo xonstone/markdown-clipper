@@ -12,6 +12,8 @@ function createReadableVersion(dom) {
 
 function convertArticleToMarkdown(article) {
   var turndownService = new TurndownService()
+  var gfm = turndownPluginGfm.gfm
+  turndownService.use(gfm)
   var markdown = turndownService.turndown(article.content);
   
   //add article titel as header
