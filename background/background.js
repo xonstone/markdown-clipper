@@ -13,35 +13,31 @@ function createReadableVersion(dom) {
 }
 
 function convertArticleToMarkdown(article, source) {
-    var turndownService = new TurndownService({
-        headingStyle: "atx",
-        hr: "- - -",
-        bulletListMarker: "*",
-        codeBlockStyle: "fenced",
-        fence: "```",
-        emDelimiter: "_",
-        strongDelimiter: "**",
-        linkStyle: "inlined",
-        linkReferenceStyle: "full"
-    })
-    var gfm = turndownPluginGfm.gfm
-    turndownService.use(gfm)
-    var markdown = turndownService.turndown(article.content);
+    return browser.storage.sync.get(null)
+        .then(function (result) {
+            var turndownService = new TurndownService(result.settings)
+            if (!!result.gfm) {
+                var gfm = turndownPluginGfm.gfm
+                turndownService.use(gfm)
+            }
 
-    //add summary if exist
-    if (!!article.excerpt) {
-        markdown = "\n> " + article.excerpt + "\n\n" + markdown;
-    }
+            var markdown = turndownService.turndown(article.content);
 
-    //add article titel as header
-    markdown = "# " + article.title + "\n" + markdown;
+            //add summary if exist
+            if (!!article.excerpt) {
+                markdown = "\n> " + article.excerpt + "\n\n" + markdown;
+            }
 
-    //add source if exist
-    if (!!source) {
-        markdown = markdown + "\n\n\n" + "[Source](" + source + ")";
-    }
+            //add article titel as header
+            markdown = "# " + article.title + "\n" + markdown;
 
-    return markdown;
+            //add source if exist
+            if (!!source) {
+                markdown = markdown + "\n\n\n" + "[Source](" + source + ")";
+            }
+
+            return markdown;
+        })
 }
 
 function generateValidFileName(title) {
@@ -102,8 +98,9 @@ function notify(message) {
     }
 
     var article = createReadableVersion(dom);
-    var markdown = convertArticleToMarkdown(article, message.source);
-    downloadMarkdown(markdown, article);
+
+    convertArticleToMarkdown(article, message.source)
+        .then(markdown => downloadMarkdown(markdown, article));
 }
 
 function action() {

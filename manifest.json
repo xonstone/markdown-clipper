@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "markdown-clipper",
-  "version": "1.0",
+  "version": "1.4",
   "author": "Enrico Kaack",
   "description": "This extension works like a web clipper, but it downloads articles in a markdown format. Turndown and Readability.js are used as core libraries. It is not guaranteed to work with all websites.",
   "icons": {
@@ -10,10 +10,16 @@
     "192": "/icons/favicon-192x192.png",
     "512": "/icons/favicon-512x512.png"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "markdown-clipper@markdown-clipper"
+    }
+  },
   "permissions": [
     "activeTab",
     "tabs",
-    "downloads"
+    "downloads",
+    "storage"
   ],
   "browser_action": {
     "default_title": "markdown-clipper",
@@ -21,6 +27,9 @@
       "16": "/icons/favicon-16x16.png",
       "32": "/icons/favicon-32x32.png"
     }
+  },
+  "options_ui": {
+    "page": "settings/options.html"
   },
   "background": {
     "scripts": [

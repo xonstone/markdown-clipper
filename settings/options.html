@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Markdown-Clipper Options</title>
+</head>
+
+<body>
+<form>
+    <div>
+        <label for="gfm">Enable Github Flavoured Markdown</label>
+        <input name="gfm" id="gfm" type="checkbox" checked>
+    </div>
+    <div>
+        <label for="headingStyle">Heading Style</label>
+        <select name="headingStyle" id="headingStyle">
+            <option value="atx">atx</option>
+            <option value="setext" selected>setext</option>
+        </select>
+    </div>
+    <div>
+        <label for="hr">Thematic Break</label>
+        <input type="text" value="* * *" pattern="[ ]{0,3}([-_*][ ]*){3}" name="hr" id="hr">
+    </div>
+    <div>
+        <label for="bulletListMarker">Bullet List Marker</label>
+        <select name="bulletListMarker" id="bulletListMarker">
+            <option value="-">-</option>
+            <option value="+">+</option>
+            <option value="*" selected>*</option>
+        </select>
+    </div>
+    <div>
+        <label for="codeBlockStyle">Code Block Style</label>
+        <select name="codeBlockStyle" id="codeBlockStyle">
+            <option value="indented" selected>indented</option>
+            <option value="fenced">fenced</option>
+        </select>
+    </div>
+    <div>
+        <label for="fence">Fence</label>
+        <select name="fence" id="fence">
+            <option value="```" selected>```</option>
+            <option value="~~~">~~~</option>
+        </select>
+    </div>
+    <div>
+        <label for="emDelimiter">Emphasis Delimiter</label>
+        <select name="emDelimiter" id="emDelimiter">
+            <option value="_" selected>_</option>
+            <option value="*">*</option>
+        </select>
+    </div>
+    <div>
+        <label for="strongDelimiter">Strong Delimiter</label>
+        <select name="strongDelimiter" id="strongDelimiter">
+            <option value="__">__</option>
+            <option value="**" selected>**</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="linkStyle">Link Style</label>
+        <select name="linkStyle" id="linkStyle">
+            <option value="inlined">inlined</option>
+            <option value="referenced">referenced</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="linkReferenceStyle">Link Reference Style</label>
+        <select name="linkReferenceStyle" id="linkReferenceStyle">
+            <option value="full">full</option>
+            <option value="collapsed">collapsed</option>
+            <option value="shortcut">shortcut</option>
+        </select>
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+
+<script src="options.js"></script>
+
+</body>
+
+</html>
