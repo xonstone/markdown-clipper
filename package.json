@@ -1,6 +1,6 @@
 {
     "name": "markdown-clipper",
-    "version": "1.7.0",
+    "version": "1.7.1",
     "description": "This extension works like a web clipper, but it downloads articles in a markdown format. Turndown and Readability.js are used as core libraries. It is not guaranteed to work with all websites.",
     "private": true,
     "scripts": {
