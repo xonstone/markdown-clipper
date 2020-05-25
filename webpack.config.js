@@ -1,8 +1,6 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
-const WebpackWebExt = require("webpack-webext-plugin");
 
-module.exports = {};
 module.exports = [
   {
     mode: "production",
@@ -18,13 +16,6 @@ module.exports = [
     plugins: [
       new CopyPlugin({
         patterns: [{from: "static", to: "."}],
-      }),
-      new WebpackWebExt({
-        runOnce: false,
-        argv: ["lint", "-s", "extension-dist/"],
-      }),
-      new WebpackWebExt({
-        argv: ["run", "-s", "extension-dist/"],
       }),
     ],
   },
