@@ -65,7 +65,6 @@ function downloadMarkdown(markdown, article) {
     .download({
       url: url,
       filename: generateValidFileName(article.title) + ".md",
-      incognito: true,
       saveAs: true,
     })
     .then((id) => {

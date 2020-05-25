@@ -7,8 +7,10 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "fmt": "prettier --write '**/*.{ts,js,css,html,json,md}' --no-bracket-spacing",
         "build": "rm -rf extension-dist && webpack",
-        "bump": "json-bump package.json --minor && json-bump static/manifest.json --minor",
-        "package": "npm run build && cd extension-dist && web-ext lint && web-ext build",
+        "bump": "json-bump package.json && json-bump static/manifest.json",
+        "package": "npm run build && npm run package:addon && npm run package:src",
+        "package:addon": "cd extension-dist && web-ext lint && web-ext build",
+        "package:src": "zip extension-dist/web-ext-artifacts/source.zip -r src -r static package.json package-lock.json webpack.config.js",
         "start:firefox": "cd extension-dist && web-ext run"
     },
     "repository": {
